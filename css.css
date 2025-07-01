@@ -1,0 +1,82 @@
+/* Сброс отступов и базовые настройки */
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: white;
+  /* Фоновое изображение */
+  background-image: url('./src/frog.jpg');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: fixed;
+  background-size: cover;
+  /* Позволяет сглаживать масштабируемое изображение */
+  image-rendering: auto;
+  
+  /* Flex для центрирования содержимого */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Контейнер с полупрозрачным фоном */
+.container {
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 30px 40px;
+  border-radius: 15px;
+  text-align: center;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
+  max-width: 400px;
+  width: 90%;
+}
+
+/* Заголовок */
+h1 {
+  margin-bottom: 20px;
+  font-weight: 700;
+  font-size: 2em;
+}
+
+/* Ссылки с иконками — flex для равномерного распределения */
+.links {
+  display: flex;
+  justify-content: space-around;
+  gap: 20px;
+  flex-wrap: wrap; /* Чтобы на маленьких экранах переходили на новую строку */
+}
+
+/* Отдельная ссылка с иконкой и текстом */
+.link-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  color: white;
+  font-weight: 600;
+  font-size: 0.9em;
+  transition: transform 0.3s ease, color 0.3s ease;
+  cursor: pointer;
+}
+
+/* Эффект при наведении */
+.link-item:hover {
+  color: #1DA1F2; /* Голубой цвет */
+  transform: scale(1.2);
+}
+
+/* Иконки SVG */
+.link-item svg {
+  width: 40px;
+  height: 40px;
+  margin-bottom: 8px;
+  fill: currentColor;
+}
+
+/* Адаптация под маленькие экраны */
+@media (max-width: 480px) {
+  .links {
+    flex-direction: column;
+    gap: 15px;
+  }
+}
