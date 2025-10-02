@@ -5,45 +5,48 @@ html, body {
   height: 100%;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   color: white;
-  /* Фоновое изображение */
   background-image: url('./src/banner1.jpg');
   background-repeat: no-repeat;
   background-position: center center;
   background-attachment: fixed;
   background-size: cover;
-  /* Позволяет сглаживать масштабируемое изображение */
-  image-rendering: auto;
-  
-  /* Flex для центрирования содержимого */
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-/* Контейнер с полупрозрачным фоном */
+/* Контейнер с градиентным полупрозрачным фоном и анимацией */
 .container {
-  background-color: rgba(0, 0, 0, 0.5);
+  background: linear-gradient(135deg, rgba(0,0,0,0.6), rgba(30,30,30,0.6));
   padding: 30px 40px;
-  border-radius: 15px;
+  border-radius: 20px;
   text-align: center;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
+  box-shadow: 0 0 30px rgba(0,0,0,0.8);
   max-width: 400px;
   width: 90%;
+  animation: fadeIn 1s ease-in-out;
+}
+
+/* Анимация появления */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 /* Заголовок */
 h1 {
-  margin-bottom: 20px;
+  margin-bottom: 25px;
   font-weight: 700;
   font-size: 2em;
+  text-shadow: 0 0 10px rgba(0,0,0,0.7);
 }
 
-/* Ссылки с иконками — flex для равномерного распределения */
+/* Ссылки с иконками и текстом */
 .links {
   display: flex;
-  justify-content: space-around;
-  gap: 20px;
-  flex-wrap: wrap; /* Чтобы на маленьких экранах переходили на новую строку */
+  justify-content: center;
+  gap: 25px;
+  flex-wrap: wrap;
 }
 
 /* Отдельная ссылка с иконкой и текстом */
@@ -54,24 +57,54 @@ h1 {
   text-decoration: none;
   color: white;
   font-weight: 600;
-  font-size: 0.9em;
-  transition: transform 0.3s ease, color 0.3s ease;
+  font-size: 0.95em;
+  transition: transform 0.3s ease, color 0.3s ease, text-shadow 0.3s ease;
   cursor: pointer;
 }
 
-/* Эффект при наведении */
-.link-item:hover {
-  color: #1DA1F2; /* Голубой цвет */
-  transform: scale(1.2);
-}
-
-/* Иконки SVG */
+/* Иконки SVG с плавной пульсацией */
 .link-item svg {
-  width: 40px;
-  height: 40px;
+  width: 45px;
+  height: 45px;
   margin-bottom: 8px;
   fill: currentColor;
+  transition: transform 0.3s ease, filter 0.3s ease;
+  animation: pulse 2s infinite;
 }
+
+/* Пульсация и лёгкое покачивание */
+@keyframes pulse {
+  0% { transform: scale(1) rotate(0deg); filter: drop-shadow(0 0 0px currentColor); }
+  25% { transform: scale(1.05) rotate(2deg); filter: drop-shadow(0 0 6px currentColor); }
+  50% { transform: scale(1) rotate(-2deg); filter: drop-shadow(0 0 0px currentColor); }
+  75% { transform: scale(1.05) rotate(2deg); filter: drop-shadow(0 0 6px currentColor); }
+  100% { transform: scale(1) rotate(0deg); filter: drop-shadow(0 0 0px currentColor); }
+}
+
+/* Наведение на ссылку — увеличение и свечение для иконки и текста */
+.link-item:hover {
+  transform: scale(1.25);
+  text-shadow: 0 0 8px rgba(255,255,255,0.8);
+}
+
+.link-item:hover svg {
+  transform: scale(1.5) rotate(0deg);
+  filter: drop-shadow(0 0 20px currentColor);
+  animation: iconGlowHover 1s infinite alternate;
+}
+
+/* Анимация пульсации при наведении */
+@keyframes iconGlowHover {
+  0% { transform: scale(1.5) rotate(0deg); filter: drop-shadow(0 0 15px currentColor); }
+  50% { transform: scale(1.55) rotate(2deg); filter: drop-shadow(0 0 25px currentColor); }
+  100% { transform: scale(1.5) rotate(-2deg); filter: drop-shadow(0 0 15px currentColor); }
+}
+
+/* Индивидуальные цвета и свечения для каждой платформы */
+.link-item.github:hover svg { fill: #fff; }
+.link-item.linkedin:hover svg { fill: #0077B5; }
+.link-item.telegram:hover svg { fill: #229ED9; }
+.link-item.email:hover svg { fill: #E94E77; }
 
 /* Адаптация под маленькие экраны */
 @media (max-width: 480px) {
